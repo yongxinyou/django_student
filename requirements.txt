@@ -1,3 +1,5 @@
 Django==2.1.8
+PyMySQL==0.9.3
 pytz==2019.2
 sqlparse==0.3.0
+UNKNOWN==0.0.0

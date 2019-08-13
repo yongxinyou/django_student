@@ -73,10 +73,17 @@ WSGI_APPLICATION = 'django1902.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hrs',
+        'HOST': '47.100.164.252',
+        'PORT': 3306,
+        'USER': 'root',
+        'PASSWORD': '123456',
+        # 这个要和下面的时间一样，都是东八区
+        'TIME_ZONE': 'Asia/Chongqing'
     }
 }
 
