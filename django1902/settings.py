@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vote',
+    'poll',
 ]
 
 MIDDLEWARE = [
@@ -78,11 +79,11 @@ WSGI_APPLICATION = 'django1902.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hrs',
-        'HOST': '47.100.164.252',
+        'NAME': 'django1902',
+        'HOST': '127.0.0.1',
         'PORT': 3306,
         'USER': 'root',
-        'PASSWORD': '123456',
+        'PASSWORD': '960218',
         # 这个要和下面的时间一样，都是东八区
         'TIME_ZONE': 'Asia/Chongqing'
     }
@@ -123,6 +124,10 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# https://docs.djangoproject.com/en/2.2/howto/static-zfiles/
 
+# 所有的静态资源都会多一个/static/的前缀，只是显示在url中，
+# 与项目的目录无关
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]

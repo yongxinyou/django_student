@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from vote import views
+from vote.views import home
+from poll.views import show_subject, show_teachers
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.home)
+    path('home/', home),
+    path('', show_subject),
+    path('teachers/', show_teachers),
 ]
