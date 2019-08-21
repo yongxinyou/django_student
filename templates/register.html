@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style>
+        .hint {
+            font-size: 12px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>用户注册</h1>
+    <hr>
+    <p class="hint">{{ hint }}</p>
+    <form action="/register/" method="post">
+        {% csrf_token %}
+        <div>
+            <label>用户名</label>
+            <input type="text" name="username" required>
+        </div>
+        <div>
+            <label>密码</label>
+            <input type="password" name="password" required>
+        </div>
+        <div>
+            <label>确认密码</label>
+            <input type="password" name="repassword" required>
+        </div>
+{#        <div>#}
+{#            <label>邮箱</label>#}
+{#            <input type="email" name="email" required>#}
+{#        </div>#}
+{#        <div>#}
+{#            <label>手机号</label>#}
+{#            <input type="tel" name="tel" required>#}
+{#            <input type="button" id="send" value="获取验证码">#}
+{#        </div>#}
+{#        <div>#}
+{#            <label>手机验证码</label>#}
+{#            <input type="text" name="code" required>#}
+{#        </div>#}
+{#        <div>#}
+{#            <input type="checkbox" name="agreement">#}
+{#            <sapn>网站<a href="">服务条款</a></sapn>#}
+{#        </div>#}
+{#        <div>#}
+            <input type="submit" value="注册">
+            <input type="reset" value="重置">
+        </div>
+        <p>
+            <a href="/login/">返回登录</a>
+            <a href="/">返回首页</a>
+        </p>
+    </form>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+{#<script>#}
+{#    $(() => {#}
+{#        $('#send').on('click', (evt) => {#}
+{#            let tel = $('input[type=tel]').val().trim()#}
+{#            $.getJSON('/mobile/?tel=' + tel, (json) => {#}
+{#                alert(json.hint)#}
+{#            })#}
+{#        })#}
+{#    })#}
+{#</script>#}

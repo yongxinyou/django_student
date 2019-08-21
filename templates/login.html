@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        .hint {
+            font-size: 12px;
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <h1>用户登录</h1>
+    <hr>
+    <p class="hint">{{ hint }}</p>
+    <form action="/register/" method="post">
+        {% csrf_token %}
+        <input type="hidden", name="backurl" value="{{ backurl }}">
+        <div>
+            <label>用户名</label>
+            <input type="text" name="username" required maxlength="10" minlength="4">
+        </div>
+        <div>
+            <label>密码</label>
+            <input type="password" name="password" required>
+        </div>
+        <div>
+            <label>验证码</label>
+            <input type="text" name="code" required>
+            <img id="captcha" src="/captcha/" alt="" width="120">
+        </div>
+        <div>
+            <input type="submit" value="登录">
+            <input type="reset" value="重置">
+        </div>
+    </form>
+    <p>
+        <a href="/">返回首页</a>
+        <a href="/register/">快速注册</a>
+    </p>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        function showCaptcha() {
+            $('#captcha').attr('src', '/captcha/?' + Math.random())
+        }
+        {#点击改标签的src属性，如果不加Math.random()，访问的url是一样的，所以会走缓存，拿到的是一样的数据#}
+        {#url加了一个Math.random()随机数，访问不同的url，数据才会不一样#}
+        $(() => {
+            showCaptcha()
+            $('#captcha').on('click', showCaptcha)
+        })
+    </script>
+</body>
+</html>

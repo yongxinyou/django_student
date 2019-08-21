@@ -62,14 +62,17 @@
                 </div>
                 <div class="info">
                     <div>
-                        <span><strong>{{ teacher.name }}</strong></span>
-                        <span>{{ teacher.birth }}</span>
-                        <span>{{ teacher.tel }}</span>
+                        <span><strong>姓名：{{ teacher.name }}</strong></span>
+                        <span>性别：{{ teacher.gender | yesno:'男, 女' }}</span>
+                        <span>生日：{{ teacher.birth }}</span>
+                        <span>电话：{{ teacher.tel }}</span>
                     </div>
                     <div class="intro">{{ teacher.intro }}</div>
                     <div class="comment">
-                        <a href="">好评:({{ teacher.good_count }})</a>
-                        <a href="">差评:({{ teacher.bad_count }})</a>
+                        <a href="/praise/?tno={{ teacher.no }}&sno={{ subject.no }}">好评:</a>
+                        <span>{{ teacher.good_count }}</span>
+                        <a href="/criticize/?tno={{ teacher.no }}&sno={{ subject.no }}">差评:</a>
+                        <span>{{ teacher.bad_count }}</span>
                     </div>
                 </div>
             </div>
@@ -77,3 +80,24 @@
     </div>
 </body>
 </html>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    {# 点击类comment下面的a标签然后执行的事件回调函数#}
+    $(() => {
+        $('.comment>a').on('click', (evt) => {
+            {#阻止时间的默认方法#}
+            evt.preventDefault()
+            {#拿到事件源a标签#}
+            let a = $(evt.target)
+            $.getJSON(a.attr('href'), (json) => {
+                if (json.code == 200) {
+                    let span = a.next()
+                    {#拿到span的内容转成整数在+1,在放回去#}
+                    span.text(parseInt(span.text())+1)
+                } else {
+                    alert(json.message)
+                }
+            })
+        })
+    })
+</script>
